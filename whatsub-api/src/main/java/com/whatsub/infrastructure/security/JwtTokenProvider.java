@@ -29,4 +29,22 @@ public class JwtTokenProvider implements TokenProvider {
                 .withExpiresAt(validity)
                 .sign(Algorithm.HMAC256(secretKey));
     }
+
+    public boolean validateToken(final String token) {
+        try {
+            JWT.require(Algorithm.HMAC256(secretKey))
+                    .build()
+                    .verify(token);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public String getPayload(final String token) {
+        return JWT.require(Algorithm.HMAC256(secretKey))
+                .build()
+                .verify(token)
+                .getSubject();
+    }
 }
