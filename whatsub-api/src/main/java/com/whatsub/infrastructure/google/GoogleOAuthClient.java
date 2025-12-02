@@ -53,8 +53,8 @@ public class GoogleOAuthClient implements OAuthClient {
 
     private OAuthUserProfile getUserProfile(String accessToken) {
         GoogleUserInfoResponse userInfo = googleRestClient.get()
-                .uri("https://www.googleapis.com/oauth2/v2/userinfo") // 유저 정보 API
-                .header("Authorization", "Bearer " + accessToken) // 헤더에 토큰 장착
+                .uri("https://www.googleapis.com/oauth2/v2/userinfo")
+                .header("Authorization", "Bearer " + accessToken)
                 .retrieve()
                 .body(GoogleUserInfoResponse.class);
 
