@@ -19,8 +19,8 @@ public class AuthController {
     public ResponseEntity<LoginResponse> login(
             @RequestBody final GoogleLoginRequest request
     ) {
-        String token = authService.login(request.code());
+        LoginResponse response = authService.login(request.code());
 
-        return ResponseEntity.ok(new LoginResponse(token));
+        return ResponseEntity.ok(response);
     }
 }

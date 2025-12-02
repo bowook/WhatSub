@@ -18,10 +18,22 @@ public class JwtTokenProvider implements TokenProvider {
     @Value("${jwt.access-token-validity}")
     private long accessTokenValidityInMilliseconds;
 
+    @Value("${jwt.refresh-token-validity}")
+    private long refreshTokenValidityInMilliseconds;
+
     @Override
     public String createAccessToken(final Long memberId) {
+        return createToken(memberId, accessTokenValidityInMilliseconds);
+    }
+
+    @Override
+    public String createRefreshToken(final Long memberId) {
+        return createToken(memberId, refreshTokenValidityInMilliseconds);
+    }
+
+    private String createToken(Long memberId, long validityInMilliseconds) {
         Date now = new Date();
-        Date validity = new Date(now.getTime() + accessTokenValidityInMilliseconds);
+        Date validity = new Date(now.getTime() + validityInMilliseconds);
 
         return JWT.create()
                 .withSubject(String.valueOf(memberId))
