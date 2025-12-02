@@ -16,6 +16,8 @@ import org.springframework.web.client.RestClient;
 @Component
 public class GoogleOAuthClient implements OAuthClient {
 
+    private static final String SERVED = "GOOGLE";
+
     private final RestClient googleRestClient;
 
     @Value("${oauth.google.client-id}")
@@ -67,7 +69,7 @@ public class GoogleOAuthClient implements OAuthClient {
                 userInfo.email(),
                 userInfo.name(),
                 userInfo.picture(),
-                "GOOGLE"
+                SERVED
         );
     }
 }
