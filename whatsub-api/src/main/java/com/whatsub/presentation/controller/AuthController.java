@@ -1,7 +1,8 @@
 package com.whatsub.presentation.controller;
 
-import com.whatsub.presentation.dto.GoogleLoginRequest;
 import com.whatsub.application.AuthService;
+import com.whatsub.presentation.dto.GoogleLoginRequest;
+import com.whatsub.presentation.dto.LoginResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,9 +16,11 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/api/google/login")
-    public ResponseEntity<Void> login(
+    public ResponseEntity<LoginResponse> login(
             @RequestBody final GoogleLoginRequest request
     ) {
-        authService.login(request.code());
+        String token = authService.login(request.code());
+
+        return ResponseEntity.ok(new LoginResponse(token));
     }
 }
