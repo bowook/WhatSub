@@ -33,4 +33,10 @@ public class MemberService {
                     return memberRepository.save(newMember);
                 });
     }
+
+    @Transactional(readOnly = true)
+    public Member findById(final Long memberId) {
+        return memberRepository.findById(memberId)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 회원입니다."));
+    }
 }

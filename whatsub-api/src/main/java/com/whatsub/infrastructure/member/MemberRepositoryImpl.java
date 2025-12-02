@@ -21,4 +21,9 @@ public class MemberRepositoryImpl implements MemberRepository {
     public Optional<Member> findByProfileEmail(final String email) {
         return memberJpaRepository.findByProfileEmail(email);
     }
+
+    @Override
+    public Optional<Member> findById(final Long memberId) {
+        return memberJpaRepository.findById(memberId);
+    }
 }
