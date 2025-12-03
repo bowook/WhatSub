@@ -22,13 +22,7 @@ public class SubScribeService {
         // Member member = memberRepository.findOne(memberId)
         //        .orElseThrow(() -> new IllegalArgumentException("회원 정보 없음"));
 
-        double price = 0;
-
-        if(dto.getPriceType() == PriceType.KRW) {
-            price = dto.getPrice();
-        } else if (dto.getPriceType() == PriceType.USD){
-            price = currencyService.usdToKrw(dto.getPrice());
-        }
+        double price = dto.getPriceType().convert(dto.getPrice(), currencyService);
 
         Subscribe subscribe = new Subscribe(
                 dto.getSubName(),

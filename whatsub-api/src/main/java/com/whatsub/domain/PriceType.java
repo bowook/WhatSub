@@ -1,5 +1,20 @@
 package com.whatsub.domain;
 
+import com.whatsub.service.CurrencyService;
+
 public enum PriceType {
-    KRW, USD
+    KRW {
+        @Override
+        public double convert(double price, CurrencyService currencyService){
+            return price;
+        }
+    },
+    USD {
+        @Override
+        public double convert(double price, CurrencyService currencyService){
+            return currencyService.usdToKrw(price);
+        }
+    };
+
+    public abstract double convert(double price, CurrencyService currencyService);
 }
