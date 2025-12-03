@@ -2,6 +2,8 @@ package com.whatsub.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestClient;
 
 import java.util.Map;
@@ -11,6 +13,7 @@ import java.util.Map;
 public class CurrencyService {
     private final RestClient restClient;
 
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public double getUsdToKrwRate() {
         String url = "https://api.frankfurter.app/latest?from=USD&to=KRW";
         Map<String, Object> response = restClient.get()
