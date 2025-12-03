@@ -1,9 +1,11 @@
 package com.whatsub;
 
+import com.whatsub.service.CurrencyService;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.client.ExpectedCount;
+import org.springframework.test.web.client.MockRestServiceServer;
+import org.springframework.web.client.RestClient;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,24 +13,32 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
+import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
 class CurrencyServiceTest {
 
     @Test
     void getUsdToKrwRate_returnsRate() {
-        RestTemplate restTemplate = mock(RestTemplate.class);
-        CurrencyService currencyService = new CurrencyService(restTemplate);
+        // given
+        RestClient.Builder builder = RestClient.builder();
+        MockRestServiceServer server = MockRestServiceServer.bindTo(builder).build();
 
-        Map<String, Double> rates = new HashMap<>();
-        rates.put("KRW", 1350.50);
+        RestClient restClient = builder.build();
+        CurrencyService currencyService = new CurrencyService(restClient);
 
-        Map<String, Object> response = new HashMap<>();
-        response.put("rates", rates);
+        String mockJson = """
+        {
+          "amount": 1.0,
+          "base": "USD",
+          "date": "2024-12-03",
+          "rates": { "KRW": 1350.50 }
+        }
+        """;
 
-        String url = "https://api.frankfurter.app/latest?from=USD&to=KRW";
-
-        when(restTemplate.getForObject(url, Map.class))
-                .thenReturn(response);
+        server.expect(ExpectedCount.once(),
+                        requestTo("https://api.frankfurter.app/latest?from=USD&to=KRW"))
+                .andRespond(withSuccess(mockJson, MediaType.APPLICATION_JSON));
 
         // when
         double rate = currencyService.getUsdToKrwRate();
@@ -39,12 +49,27 @@ class CurrencyServiceTest {
 
     @Test
     void usdToKrw_convertsProperly() {
-        //given
-        RestTemplate restTemplate = mock(RestTemplate.class);
-        CurrencyService currencyService = new CurrencyService(restTemplate);
+        // given
+        RestClient.Builder builder = RestClient.builder();
+        MockRestServiceServer server = MockRestServiceServer.bindTo(builder).build();
 
-        when(restTemplate.getForObject("https://api.frankfurter.app/latest?from=USD&to=KRW", Map.class))
-                .thenReturn(Map.of("rates", Map.of("KRW", 1300.0)));
+        RestClient restClient = builder.build();
+        CurrencyService currencyService = new CurrencyService(restClient);
+
+        String url = "https://api.frankfurter.app/latest?from=USD&to=KRW";
+
+        // Frankfurter API가 이런 JSON을 줬다고 가정
+        String mockJson = """
+            {
+              "amount": 1.0,
+              "base": "USD",
+              "date": "2024-12-03",
+              "rates": { "KRW": 1300.0 }
+            }
+            """;
+
+        server.expect(ExpectedCount.once(), requestTo(url))
+                .andRespond(withSuccess(mockJson, MediaType.APPLICATION_JSON));
 
         // when
         double result = currencyService.usdToKrw(10);

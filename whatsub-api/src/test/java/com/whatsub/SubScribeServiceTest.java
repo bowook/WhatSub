@@ -1,5 +1,10 @@
 package com.whatsub;
 
+import com.whatsub.domain.*;
+import com.whatsub.domain.dto.CreateSubscribeRequest;
+import com.whatsub.repository.SubScribeRepository;
+import com.whatsub.service.CurrencyService;
+import com.whatsub.service.SubScribeService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -8,7 +13,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
-import java.util.Optional;
 
 import static org.mockito.Mockito.any;
 import static org.junit.jupiter.api.Assertions.*;
@@ -27,17 +31,12 @@ class SubScribeServiceTest {
     @InjectMocks
     SubScribeService subScribeService;
 
+    @Mock
+    SubscribeFixtures subscribeFixtures;
+
     @Test
     void createSubScribe_withKrwPrice_savesPriceAsIs() {
-        CreateSubscribeRequest dto = CreateSubscribeRequest.builder()
-                .subName("넷플릭스")
-                .subscribeCategory(SubscribeCategory.OTT)
-                .priceType(PriceType.KRW)
-                .price(15000)
-                .subscribeCycle(SubscribeCycle.MONTH)
-                .date(LocalDate.of(2024, 1, 1))
-                .share(true)
-                .build();
+        CreateSubscribeRequest dto = SubscribeFixtures.기본_구독_요청_KRW();
 
         when(subScribeRepository.save(any(Subscribe.class)))
                 .thenAnswer(invocation -> invocation.getArgument(0));
@@ -55,15 +54,7 @@ class SubScribeServiceTest {
 
     @Test
     void createSubScribe_withUsdPrice_savesPriceAsIs() {
-        CreateSubscribeRequest dto = CreateSubscribeRequest.builder()
-                .subName("ChatGPT")
-                .subscribeCategory(SubscribeCategory.LLM)
-                .priceType(PriceType.USD)
-                .price(22)
-                .subscribeCycle(SubscribeCycle.MONTH)
-                .date(LocalDate.of(2024, 1, 1))
-                .share(true)
-                .build();
+        CreateSubscribeRequest dto = SubscribeFixtures.기본_구독_요청_USD();
 
         when(currencyService.usdToKrw(22)).thenReturn(34000.0);
 
