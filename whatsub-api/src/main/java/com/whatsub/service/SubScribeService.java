@@ -17,6 +17,7 @@ public class SubScribeService {
     private final SubScribeRepository subScribeRepository;
     private final CurrencyService currencyService;
 
+    @Transactional
     public Long createSubScribe(CreateSubscribeRequest dto) {
         // Member member = memberRepository.findOne(memberId)
         //        .orElseThrow(() -> new IllegalArgumentException("회원 정보 없음"));
@@ -42,8 +43,10 @@ public class SubScribeService {
         return subscribe.getId();
     }
 
+    @Transactional
     public void updateSubscribe() {}
 
+    @Transactional
     public void deleteSubscribe(Subscribe subscribe) {
         subScribeRepository.delete(subscribe);
     }
