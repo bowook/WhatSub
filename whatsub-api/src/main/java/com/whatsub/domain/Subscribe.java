@@ -1,9 +1,8 @@
-package com.whatsub;
+package com.whatsub.domain;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity

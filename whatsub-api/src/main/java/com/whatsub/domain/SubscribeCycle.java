@@ -1,4 +1,4 @@
-package com.whatsub;
+package com.whatsub.domain;
 
 public enum SubscribeCycle {
     YEAR, MONTH, WEAK

@@ -1,12 +1,14 @@
-package com.whatsub;
+package com.whatsub.domain.dto;
 
+import com.whatsub.domain.PriceType;
+import com.whatsub.domain.SubscribeCategory;
+import com.whatsub.domain.SubscribeCycle;
 import lombok.*;
 import java.time.LocalDate;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-@Builder
 public class CreateSubscribeRequest {
     private String subName;
     private SubscribeCategory subscribeCategory;

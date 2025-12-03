@@ -1,5 +1,9 @@
-package com.whatsub;
+package com.whatsub.service;
 
+import com.whatsub.domain.dto.CreateSubscribeRequest;
+import com.whatsub.domain.PriceType;
+import com.whatsub.domain.Subscribe;
+import com.whatsub.repository.SubScribeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,19 +1,22 @@
-package com.whatsub;
+package com.whatsub.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.client.RestClient;
 
 import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
 public class CurrencyService {
-    private final RestTemplate restTemplate;
+    private final RestClient restClient;
 
     public double getUsdToKrwRate() {
         String url = "https://api.frankfurter.app/latest?from=USD&to=KRW";
-        Map<String, Object> response = restTemplate.getForObject(url, Map.class);
+        Map<String, Object> response = restClient.get()
+                .uri(url)
+                .retrieve()
+                .body(Map.class);
         Map<String, Double> rates = (Map<String, Double>) response.get("rates");
 
         return rates.get("KRW");
