@@ -2,7 +2,7 @@ package com.whatsub.application;
 
 import com.whatsub.presentation.dto.CreateSubscribeRequest;
 import com.whatsub.domain.Subscribe;
-import com.whatsub.domain.SubScribeRepository;
+import com.whatsub.domain.SubscribeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,7 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class SubScribeService {
-    private final SubScribeRepository subScribeRepository;
+    private final SubscribeRepository subScribeRepository;
     private final CurrencyService currencyService;
 
     @Transactional

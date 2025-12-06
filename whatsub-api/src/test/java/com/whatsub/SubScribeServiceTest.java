@@ -2,7 +2,7 @@ package com.whatsub;
 
 import com.whatsub.domain.*;
 import com.whatsub.presentation.dto.CreateSubscribeRequest;
-import com.whatsub.domain.SubScribeRepository;
+import com.whatsub.domain.SubscribeRepository;
 import com.whatsub.application.CurrencyService;
 import com.whatsub.application.SubScribeService;
 import org.junit.jupiter.api.Test;
@@ -21,7 +21,7 @@ import static org.mockito.Mockito.when;
 class SubScribeServiceTest {
 
     @Mock
-    SubScribeRepository subScribeRepository;
+    SubscribeRepository subScribeRepository;
 
     @Mock
     CurrencyService currencyService;
