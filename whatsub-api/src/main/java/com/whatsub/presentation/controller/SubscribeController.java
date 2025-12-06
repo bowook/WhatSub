@@ -1,4 +1,4 @@
-package com.whatsub;
+package com.whatsub.presentation.controller;
 
 import org.springframework.stereotype.Controller;
 

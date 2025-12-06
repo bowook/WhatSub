@@ -1,4 +1,4 @@
-package com.whatsub.service;
+package com.whatsub.application;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

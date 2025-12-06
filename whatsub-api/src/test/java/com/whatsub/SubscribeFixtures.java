@@ -3,7 +3,7 @@ package com.whatsub;
 import com.whatsub.domain.PriceType;
 import com.whatsub.domain.SubscribeCategory;
 import com.whatsub.domain.SubscribeCycle;
-import com.whatsub.domain.dto.CreateSubscribeRequest;
+import com.whatsub.presentation.dto.CreateSubscribeRequest;
 
 import java.time.LocalDate;
 

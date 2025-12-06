@@ -1,4 +1,4 @@
-package com.whatsub.domain.dto;
+package com.whatsub.presentation.dto;
 
 import com.whatsub.domain.PriceType;
 import com.whatsub.domain.SubscribeCategory;

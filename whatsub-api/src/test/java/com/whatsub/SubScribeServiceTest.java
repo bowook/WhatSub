@@ -1,18 +1,16 @@
 package com.whatsub;
 
 import com.whatsub.domain.*;
-import com.whatsub.domain.dto.CreateSubscribeRequest;
-import com.whatsub.repository.SubScribeRepository;
-import com.whatsub.service.CurrencyService;
-import com.whatsub.service.SubScribeService;
+import com.whatsub.presentation.dto.CreateSubscribeRequest;
+import com.whatsub.domain.SubScribeRepository;
+import com.whatsub.application.CurrencyService;
+import com.whatsub.application.SubScribeService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.time.LocalDate;
 
 import static org.mockito.Mockito.any;
 import static org.junit.jupiter.api.Assertions.*;

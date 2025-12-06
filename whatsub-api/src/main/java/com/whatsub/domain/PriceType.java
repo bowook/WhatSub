@@ -1,6 +1,6 @@
 package com.whatsub.domain;
 
-import com.whatsub.service.CurrencyService;
+import com.whatsub.application.CurrencyService;
 
 public enum PriceType {
     KRW {
