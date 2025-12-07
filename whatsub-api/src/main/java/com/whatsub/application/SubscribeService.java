@@ -19,21 +19,21 @@ public class SubscribeService {
     private final CurrencyService currencyService;
 
     @Transactional
-    public Long createSubScribe(CreateSubscribeRequest dto) {
+    public Long createSubscribe(CreateSubscribeRequest dto) {
         // Member member = memberRepository.findOne(memberId)
         //        .orElseThrow(() -> new IllegalArgumentException("회원 정보 없음"));
 
-        double price = dto.getPriceType().convert(dto.getPrice(), currencyService);
+        double price = dto.priceType().convert(dto.price(), currencyService);
 
-        Subscribe subscribe = new Subscribe(
-                dto.getSubName(),
-                dto.getSubscribeCategory(),
-                price,
-                dto.getSubscribeCycle(),
-                dto.getDate().atStartOfDay(),
-                dto.isShare()
-//                , member
-        );
+        Subscribe subscribe = Subscribe.builder()
+                .subName(dto.subName())
+                .subscribeCategory(dto.subscribeCategory())
+                .price(price)
+                .subscribeCycle(dto.subscribeCycle())
+                .date(dto.date().atStartOfDay())
+                .NtoShare(dto.share())
+                .build();
+
         subscribeJpaRepository.save(subscribe);
         return subscribe.getId();
     }

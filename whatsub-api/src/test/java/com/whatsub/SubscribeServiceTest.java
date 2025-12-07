@@ -33,13 +33,13 @@ class SubscribeServiceTest {
     SubscribeFixtures subscribeFixtures;
 
     @Test
-    void createSubScribe_withKrwPrice_savesPriceAsIs() {
+    void createSubscribe_withKrwPrice_savesPriceAsIs() {
         CreateSubscribeRequest dto = SubscribeFixtures.기본_구독_요청_KRW();
 
         when(subScribeRepository.save(any(Subscribe.class)))
                 .thenAnswer(invocation -> invocation.getArgument(0));
 
-        subScribeService.createSubScribe(dto);
+        subScribeService.createSubscribe(dto);
 
         ArgumentCaptor<Subscribe> captor = ArgumentCaptor.forClass(Subscribe.class);
         verify(subScribeRepository).save(captor.capture());
@@ -51,7 +51,7 @@ class SubscribeServiceTest {
     }
 
     @Test
-    void createSubScribe_withUsdPrice_savesPriceAsIs() {
+    void createSubscribe_withUsdPrice_savesPriceAsIs() {
         CreateSubscribeRequest dto = SubscribeFixtures.기본_구독_요청_USD();
 
         when(currencyService.usdToKrw(22)).thenReturn(34000.0);
@@ -59,7 +59,7 @@ class SubscribeServiceTest {
         when(subScribeRepository.save(any(Subscribe.class)))
                 .thenAnswer(invocation -> invocation.getArgument(0));
 
-        subScribeService.createSubScribe(dto);
+        subScribeService.createSubscribe(dto);
 
         ArgumentCaptor<Subscribe> captor = ArgumentCaptor.forClass(Subscribe.class);
         verify(subScribeRepository).save(captor.capture());
