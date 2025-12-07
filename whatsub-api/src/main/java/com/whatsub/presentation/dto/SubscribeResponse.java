@@ -3,9 +3,11 @@ package com.whatsub.presentation.dto;
 import com.whatsub.domain.PriceType;
 import com.whatsub.domain.SubscribeCategory;
 import com.whatsub.domain.SubscribeCycle;
+
 import java.time.LocalDate;
 
-public record CreateSubscribeRequest(
+public record SubscribeResponse(
+        Long id,
         String subName,
         SubscribeCategory subscribeCategory,
         PriceType priceType,
@@ -13,4 +15,4 @@ public record CreateSubscribeRequest(
         SubscribeCycle subscribeCycle,
         LocalDate date,
         boolean share
-) { }
+        ) {}
