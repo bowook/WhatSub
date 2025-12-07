@@ -19,7 +19,7 @@ public class SubscribeService {
     private final CurrencyService currencyService;
 
     @Transactional
-    public Long createSubscribe(CreateSubscribeRequest dto) {
+    public Subscribe createSubscribe(CreateSubscribeRequest dto) {
         // Member member = memberRepository.findOne(memberId)
         //        .orElseThrow(() -> new IllegalArgumentException("회원 정보 없음"));
 
@@ -35,7 +35,7 @@ public class SubscribeService {
                 .build();
 
         subscribeJpaRepository.save(subscribe);
-        return subscribe.getId();
+        return subscribe;
     }
 
     @Transactional
