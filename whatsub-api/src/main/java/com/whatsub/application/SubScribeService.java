@@ -1,8 +1,9 @@
 package com.whatsub.application;
 
+import com.whatsub.domain.SubscribeRepository;
+import com.whatsub.infrastructure.SubscribeJpaRepository;
 import com.whatsub.presentation.dto.CreateSubscribeRequest;
 import com.whatsub.domain.Subscribe;
-import com.whatsub.domain.SubscribeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,7 +14,8 @@ import java.util.List;
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class SubScribeService {
-    private final SubscribeRepository subScribeRepository;
+    private final SubscribeJpaRepository subscribeJpaRepository;
+    private final SubscribeRepository subscribeRepository;
     private final CurrencyService currencyService;
 
     @Transactional
@@ -32,7 +34,7 @@ public class SubScribeService {
                 dto.isShare()
 //                , member
         );
-        subScribeRepository.save(subscribe);
+        subscribeJpaRepository.save(subscribe);
         return subscribe.getId();
     }
 
@@ -41,10 +43,10 @@ public class SubScribeService {
 
     @Transactional
     public void deleteSubscribe(Subscribe subscribe) {
-        subScribeRepository.delete(subscribe);
+        subscribeJpaRepository.delete(subscribe);
     }
 
     public List<Subscribe> subscribeList(Long memberId) {
-        return subScribeRepository.findAllSubscribe(memberId);
+        return subscribeRepository.findAllSubscribe(memberId);
     }
 }
