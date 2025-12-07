@@ -4,7 +4,7 @@ import com.whatsub.domain.*;
 import com.whatsub.presentation.dto.CreateSubscribeRequest;
 import com.whatsub.domain.SubscribeRepository;
 import com.whatsub.application.CurrencyService;
-import com.whatsub.application.SubScribeService;
+import com.whatsub.application.SubscribeService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -18,7 +18,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class SubScribeServiceTest {
+class SubscribeServiceTest {
 
     @Mock
     SubscribeRepository subScribeRepository;
@@ -27,7 +27,7 @@ class SubScribeServiceTest {
     CurrencyService currencyService;
 
     @InjectMocks
-    SubScribeService subScribeService;
+    SubscribeService subScribeService;
 
     @Mock
     SubscribeFixtures subscribeFixtures;

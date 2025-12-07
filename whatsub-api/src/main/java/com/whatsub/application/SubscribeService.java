@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class SubScribeService {
+public class SubscribeService {
     private final SubscribeJpaRepository subscribeJpaRepository;
     private final SubscribeRepository subscribeRepository;
     private final CurrencyService currencyService;

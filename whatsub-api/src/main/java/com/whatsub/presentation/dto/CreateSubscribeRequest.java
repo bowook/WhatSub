@@ -13,4 +13,4 @@ public record CreateSubscribeRequest(
         SubscribeCycle subscribeCycle,
         LocalDate date,
         boolean share
-) { }
+) {}
