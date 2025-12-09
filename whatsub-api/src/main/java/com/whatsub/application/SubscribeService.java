@@ -4,6 +4,7 @@ import com.whatsub.domain.SubscribeRepository;
 import com.whatsub.infrastructure.SubscribeJpaRepository;
 import com.whatsub.presentation.dto.CreateSubscribeRequest;
 import com.whatsub.domain.Subscribe;
+import com.whatsub.presentation.dto.SubscribeList;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,7 +47,14 @@ public class SubscribeService {
         subscribeJpaRepository.delete(subscribe);
     }
 
-    public List<Subscribe> subscribeList(Long memberId) {
-        return subscribeRepository.findAllSubscribe(memberId);
+    public List<SubscribeList> subscribeList(Long memberId) {
+        return subscribeRepository.findAllSubscribe(memberId).stream()
+                .map(sub -> new SubscribeList(
+                        sub.getSubName(),
+                        sub.getSubscribeCategory(),
+                        sub.getPrice(),
+                        sub.getSubscribeCycle(),
+                        sub.getDate().toLocalDate()
+                )).toList();
     }
 }
