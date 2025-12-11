@@ -30,7 +30,7 @@ public class SubscribeController {
                 .body(response);
     }
 
-    @PostMapping
+    @PutMapping("/{id}")
     public ResponseEntity<SubscribeResponse> editSub(
             @PathVariable Long id,
             @RequestBody CreateSubscribeRequest request
