@@ -39,7 +39,22 @@ public class SubscribeService {
     }
 
     @Transactional
-    public void updateSubscribe() {}
+    public Subscribe editSubscribe(Long subscribeId, CreateSubscribeRequest dto) {
+        Subscribe subscribe = subscribeRepository.findById(subscribeId)
+                .orElseThrow(() -> new IllegalArgumentException("구독 없음"));
+
+        double price = dto.priceType().convert(dto.price(), currencyService);
+
+        subscribe.edit(
+                dto.subName(),
+                dto.subscribeCategory(),
+                price,
+                dto.subscribeCycle(),
+                dto.date().atStartOfDay(),
+                dto.share()
+        );
+        return subscribe;
+    }
 
     @Transactional
     public void deleteSubscribe(Subscribe subscribe) {

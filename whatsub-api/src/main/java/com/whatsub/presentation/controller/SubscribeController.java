@@ -3,16 +3,14 @@ package com.whatsub.presentation.controller;
 import com.whatsub.application.SubscribeService;
 import com.whatsub.domain.Subscribe;
 import com.whatsub.presentation.dto.CreateSubscribeRequest;
+import com.whatsub.presentation.dto.EditSubscribeRequest;
 import com.whatsub.presentation.dto.SubscribeList;
 import com.whatsub.presentation.dto.SubscribeResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -36,6 +34,25 @@ public class SubscribeController {
                 subscribe.getNtoShare()
         );
         return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @PostMapping(value = "/subscribe/edit")
+    public ResponseEntity<SubscribeResponse> editSub(
+            @RequestBody EditSubscribeRequest request
+    ){
+        Subscribe subscribe = subscribeService.editSubscribe(
+                request.id(),
+                new CreateSubscribeRequest(
+                        request.subName(),
+                        request.subscribeCategory(),
+                        request.priceType(),
+                        request.price(),
+                        request.subscribeCycle(),
+                        request.date(),
+                        request.share()
+                )
+        );
+        return ResponseEntity.ok(new SubscribeResponse(subscribe));
     }
 
     @GetMapping(value = "/subscribe/view")

@@ -34,23 +34,36 @@ public class Subscribe {
 
     private Boolean NtoShare;
 
-//    public Subscribe(String subName, SubscribeCategory subscribeCategory, Double price, SubscribeCycle subscribeCycle, LocalDateTime date, Boolean ntoShare, Member member) {
-//        this.subName = subName;
-//        this.subscribeCategory = subscribeCategory;
-//        this.price = price;
-//        this.subscribeCycle = subscribeCycle;
-//        this.date = date;
-//        NtoShare = ntoShare;
-//        this.member = member;
-//    }
-
     @Builder
-    public Subscribe(String subName, SubscribeCategory subscribeCategory, Double price, SubscribeCycle subscribeCycle, LocalDateTime date, Boolean ntoShare) {
+    public Subscribe(
+            String subName,
+            SubscribeCategory subscribeCategory,
+            Double price,
+            SubscribeCycle subscribeCycle,
+            LocalDateTime date,
+            Boolean ntoShare
+    ) {
         this.subName = subName;
         this.subscribeCategory = subscribeCategory;
         this.price = price;
         this.subscribeCycle = subscribeCycle;
         this.date = date;
         NtoShare = ntoShare;
+    }
+
+    public void edit(
+            String subName,
+            SubscribeCategory subscribeCategory,
+            double price,
+            SubscribeCycle subscribeCycle,
+            LocalDateTime date,
+            boolean NtoShare
+    ) {
+        this.subName = subName;
+        this.subscribeCategory = subscribeCategory;
+        this.price = price;
+        this.subscribeCycle = subscribeCycle;
+        this.date = date;
+        this.NtoShare = NtoShare;
     }
 }

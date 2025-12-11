@@ -1,13 +1,12 @@
 package com.whatsub.presentation.dto;
 
 import com.whatsub.domain.PriceType;
-import com.whatsub.domain.Subscribe;
 import com.whatsub.domain.SubscribeCategory;
 import com.whatsub.domain.SubscribeCycle;
 
 import java.time.LocalDate;
 
-public record SubscribeResponse(
+public record EditSubscribeRequest(
         Long id,
         String subName,
         SubscribeCategory subscribeCategory,
@@ -16,5 +15,4 @@ public record SubscribeResponse(
         SubscribeCycle subscribeCycle,
         LocalDate date,
         boolean share
-        ) {
-}
+) {}
