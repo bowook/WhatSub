@@ -17,4 +17,16 @@ public record SubscribeResponse(
         LocalDate date,
         boolean share
         ) {
+    public SubscribeResponse(Subscribe subscribe) {
+        this(
+                subscribe.getId(),
+                subscribe.getSubName(),
+                subscribe.getSubscribeCategory(),
+                subscribe.getPriceType(),
+                subscribe.getPrice(),
+                subscribe.getSubscribeCycle(),
+                subscribe.getDate().toLocalDate(),
+                subscribe.getNtoShare()
+        );
+    }
 }

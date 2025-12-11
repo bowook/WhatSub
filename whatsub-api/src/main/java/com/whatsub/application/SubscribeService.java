@@ -48,6 +48,7 @@ public class SubscribeService {
         subscribe.edit(
                 dto.subName(),
                 dto.subscribeCategory(),
+                dto.priceType(),
                 price,
                 dto.subscribeCycle(),
                 dto.date().atStartOfDay(),

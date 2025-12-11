@@ -38,6 +38,7 @@ public class Subscribe {
     public Subscribe(
             String subName,
             SubscribeCategory subscribeCategory,
+            PriceType priceType,
             Double price,
             SubscribeCycle subscribeCycle,
             LocalDateTime date,
@@ -45,6 +46,7 @@ public class Subscribe {
     ) {
         this.subName = subName;
         this.subscribeCategory = subscribeCategory;
+        this.priceType = priceType;
         this.price = price;
         this.subscribeCycle = subscribeCycle;
         this.date = date;
@@ -54,6 +56,7 @@ public class Subscribe {
     public void edit(
             String subName,
             SubscribeCategory subscribeCategory,
+            PriceType priceType,
             double price,
             SubscribeCycle subscribeCycle,
             LocalDateTime date,
@@ -61,6 +64,7 @@ public class Subscribe {
     ) {
         this.subName = subName;
         this.subscribeCategory = subscribeCategory;
+        this.priceType = priceType;
         this.price = price;
         this.subscribeCycle = subscribeCycle;
         this.date = date;

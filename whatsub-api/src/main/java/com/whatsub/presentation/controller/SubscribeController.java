@@ -15,47 +15,32 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
+@RequestMapping("/api/subscribes")
 @RequiredArgsConstructor
 public class SubscribeController {
     private final SubscribeService subscribeService;
 
-    @PostMapping(value = "/subscribe/new")
+    @PostMapping
     public ResponseEntity<SubscribeResponse> createSub(@RequestBody CreateSubscribeRequest request) {
-        Subscribe subscribe = subscribeService.createSubscribe(request);
+        Subscribe created = subscribeService.createSubscribe(request);
 
-        SubscribeResponse response = new SubscribeResponse(
-                subscribe.getId(),
-                subscribe.getSubName(),
-                subscribe.getSubscribeCategory(),
-                subscribe.getPriceType(),
-                subscribe.getPrice(),
-                subscribe.getSubscribeCycle(),
-                subscribe.getDate().toLocalDate(), // LocalDateTime이면 이렇게 가공
-                subscribe.getNtoShare()
-        );
-        return ResponseEntity.status(HttpStatus.OK).body(response);
+        SubscribeResponse response = new SubscribeResponse(created);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(response);
     }
 
-    @PostMapping(value = "/subscribe/edit")
+    @PostMapping
     public ResponseEntity<SubscribeResponse> editSub(
-            @RequestBody EditSubscribeRequest request
+            @PathVariable Long id,
+            @RequestBody CreateSubscribeRequest request
     ){
-        Subscribe subscribe = subscribeService.editSubscribe(
-                request.id(),
-                new CreateSubscribeRequest(
-                        request.subName(),
-                        request.subscribeCategory(),
-                        request.priceType(),
-                        request.price(),
-                        request.subscribeCycle(),
-                        request.date(),
-                        request.share()
-                )
-        );
-        return ResponseEntity.ok(new SubscribeResponse(subscribe));
+        Subscribe edited = subscribeService.editSubscribe(id, request);
+        SubscribeResponse response = new SubscribeResponse(edited);
+        return ResponseEntity.ok(response);
     }
 
-    @GetMapping(value = "/subscribe/view")
+    @GetMapping("/{id}")
     public ResponseEntity<List<SubscribeList>> subscribeList(@RequestParam Long memberId) {
         return ResponseEntity.ok(subscribeService.subscribeList(memberId));
     }
