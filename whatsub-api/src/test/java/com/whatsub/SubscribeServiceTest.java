@@ -21,7 +21,7 @@ import static org.mockito.Mockito.when;
 class SubscribeServiceTest {
 
     @Mock
-    SubscribeRepository subScribeRepository;
+    SubscribeRepository subscribeRepository;
 
     @Mock
     CurrencyService currencyService;
@@ -29,20 +29,17 @@ class SubscribeServiceTest {
     @InjectMocks
     SubscribeService subScribeService;
 
-    @Mock
-    SubscribeFixtures subscribeFixtures;
-
     @Test
     void createSubscribe_withKrwPrice_savesPriceAsIs() {
         CreateSubscribeRequest dto = SubscribeFixtures.기본_구독_요청_KRW();
 
-        when(subScribeRepository.save(any(Subscribe.class)))
+        when(subscribeRepository.save(any(Subscribe.class)))
                 .thenAnswer(invocation -> invocation.getArgument(0));
 
         subScribeService.createSubscribe(dto);
 
         ArgumentCaptor<Subscribe> captor = ArgumentCaptor.forClass(Subscribe.class);
-        verify(subScribeRepository).save(captor.capture());
+        verify(subscribeRepository).save(captor.capture());
 
         Subscribe saved = captor.getValue();
 
@@ -56,13 +53,13 @@ class SubscribeServiceTest {
 
         when(currencyService.usdToKrw(22)).thenReturn(34000.0);
 
-        when(subScribeRepository.save(any(Subscribe.class)))
+        when(subscribeRepository.save(any(Subscribe.class)))
                 .thenAnswer(invocation -> invocation.getArgument(0));
 
         subScribeService.createSubscribe(dto);
 
         ArgumentCaptor<Subscribe> captor = ArgumentCaptor.forClass(Subscribe.class);
-        verify(subScribeRepository).save(captor.capture());
+        verify(subscribeRepository).save(captor.capture());
 
         Subscribe saved = captor.getValue();
 

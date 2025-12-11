@@ -14,7 +14,7 @@ public class SubscribeFixtures {
                 "넷플릭스",
                 SubscribeCategory.OTT,
                 PriceType.KRW,
-                10000,
+                15000,
                 SubscribeCycle.MONTH,
                 LocalDate.now(),
                 false
@@ -36,14 +36,13 @@ public class SubscribeFixtures {
     public static CreateSubscribeRequest 공유_구독_요청() {
         CreateSubscribeRequest req = 기본_구독_요청_KRW();
         return new CreateSubscribeRequest(
-                req.getSubName(),
-                req.getSubscribeCategory(),
-                req.getPriceType(),
-                req.getPrice(),
-                req.getSubscribeCycle(),
-                req.getDate(),
+                req.subName(),
+                req.subscribeCategory(),
+                req.priceType(),
+                req.price(),
+                req.subscribeCycle(),
+                req.date(),
                 true
         );
     }
 }
-

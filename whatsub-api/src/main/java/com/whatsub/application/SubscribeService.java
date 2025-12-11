@@ -31,7 +31,7 @@ public class SubscribeService {
                 .price(price)
                 .subscribeCycle(dto.subscribeCycle())
                 .date(dto.date().atStartOfDay())
-                .NtoShare(dto.share())
+                .ntoShare(dto.share())
                 .build();
 
         subscribeRepository.save(subscribe);

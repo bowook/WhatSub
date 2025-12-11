@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter
-@Builder
 public class Subscribe {
     @Id
     @GeneratedValue
@@ -45,6 +44,7 @@ public class Subscribe {
 //        this.member = member;
 //    }
 
+    @Builder
     public Subscribe(String subName, SubscribeCategory subscribeCategory, Double price, SubscribeCycle subscribeCycle, LocalDateTime date, Boolean ntoShare) {
         this.subName = subName;
         this.subscribeCategory = subscribeCategory;
