@@ -15,7 +15,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class SubscribeService {
-    private final SubscribeJpaRepository subscribeJpaRepository;
     private final SubscribeRepository subscribeRepository;
     private final CurrencyService currencyService;
 
@@ -35,7 +34,7 @@ public class SubscribeService {
                 .NtoShare(dto.share())
                 .build();
 
-        subscribeJpaRepository.save(subscribe);
+        subscribeRepository.save(subscribe);
         return subscribe;
     }
 
@@ -44,11 +43,11 @@ public class SubscribeService {
 
     @Transactional
     public void deleteSubscribe(Subscribe subscribe) {
-        subscribeJpaRepository.delete(subscribe);
+        subscribeRepository.delete(subscribe);
     }
 
     public List<SubscribeList> subscribeList(Long memberId) {
-        return subscribeRepository.findAllSubscribe(memberId).stream()
+        return subscribeRepository.findAllByMemberId(memberId).stream()
                 .map(sub -> new SubscribeList(
                         sub.getSubName(),
                         sub.getSubscribeCategory(),
