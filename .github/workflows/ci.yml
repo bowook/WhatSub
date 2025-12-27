@@ -25,6 +25,7 @@ jobs:
         uses: gradle/actions/setup-gradle@v3
 
       - name: Build with Gradle
+        working-directory: ./whatsub-api
         run: ./gradlew build
         env:
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
