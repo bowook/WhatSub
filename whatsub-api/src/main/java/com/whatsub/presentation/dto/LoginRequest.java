@@ -1,6 +1,6 @@
 package com.whatsub.presentation.dto;
 
-public record GoogleLoginRequest(
+public record LoginRequest(
         String code
 ) {
 }

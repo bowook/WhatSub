@@ -31,17 +31,7 @@ public class JwtTokenProvider implements TokenProvider {
         return createToken(memberId, refreshTokenValidityInMilliseconds);
     }
 
-    private String createToken(Long memberId, long validityInMilliseconds) {
-        Date now = new Date();
-        Date validity = new Date(now.getTime() + validityInMilliseconds);
-
-        return JWT.create()
-                .withSubject(String.valueOf(memberId))
-                .withIssuedAt(now)
-                .withExpiresAt(validity)
-                .sign(Algorithm.HMAC256(secretKey));
-    }
-
+    @Override
     public boolean validateToken(final String token) {
         try {
             JWT.require(Algorithm.HMAC256(secretKey))
@@ -51,6 +41,17 @@ public class JwtTokenProvider implements TokenProvider {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    private String createToken(Long memberId, long validityInMilliseconds) {
+        Date now = new Date();
+        Date validity = new Date(now.getTime() + validityInMilliseconds);
+
+        return JWT.create()
+                .withSubject(String.valueOf(memberId))
+                .withIssuedAt(now)
+                .withExpiresAt(validity)
+                .sign(Algorithm.HMAC256(secretKey));
     }
 
     public String getPayload(final String token) {

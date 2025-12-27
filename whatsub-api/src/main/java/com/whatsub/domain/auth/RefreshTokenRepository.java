@@ -8,5 +8,5 @@ public interface RefreshTokenRepository {
 
     Optional<RefreshToken> findByToken(String token);
 
-    void delete(String token);
+    void delete(RefreshToken token);
 }
