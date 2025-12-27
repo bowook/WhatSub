@@ -14,17 +14,16 @@ public class RefreshTokenRepositoryImpl implements RefreshTokenRepository {
 
     @Override
     public void save(final RefreshToken refreshToken) {
-        jpaRepository.save(RefreshTokenEntity.from(refreshToken));
+        jpaRepository.save(refreshToken);
     }
 
     @Override
     public Optional<RefreshToken> findByToken(final String token) {
-        return jpaRepository.findById(token)
-                .map(RefreshTokenEntity::toModel);
+        return jpaRepository.findById(token);
     }
 
     @Override
-    public void delete(final String token) {
-        jpaRepository.deleteById(token);
+    public void delete(final RefreshToken token) {
+        jpaRepository.delete(token);
     }
 }

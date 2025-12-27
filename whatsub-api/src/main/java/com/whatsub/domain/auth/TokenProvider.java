@@ -5,4 +5,6 @@ public interface TokenProvider {
     String createAccessToken(Long memberId);
 
     String createRefreshToken(Long memberId);
+
+    boolean validateToken(String token);
 }

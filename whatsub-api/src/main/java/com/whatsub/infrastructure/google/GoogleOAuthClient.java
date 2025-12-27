@@ -1,6 +1,7 @@
 package com.whatsub.infrastructure.google;
 
 import com.whatsub.domain.auth.OAuthClient;
+import com.whatsub.domain.auth.OAuthProvider;
 import com.whatsub.domain.auth.OAuthUserProfile;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +29,11 @@ public class GoogleOAuthClient implements OAuthClient {
 
     @Value("${oauth.google.redirect-uri}")
     private String redirectUri;
+
+    @Override
+    public OAuthProvider getProvider() {
+        return OAuthProvider.GOOGLE;
+    }
 
     @Override
     public OAuthUserProfile getOAuthUserProfile(final String code) {
