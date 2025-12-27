@@ -26,7 +26,9 @@ jobs:
 
       - name: Build with Gradle
         working-directory: ./whatsub-api
-        run: ./gradlew build
+        run: |
+          chmod +x ./gradlew
+          ./gradlew build
         env:
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
           GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
