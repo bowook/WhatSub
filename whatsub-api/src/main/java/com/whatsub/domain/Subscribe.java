@@ -17,6 +17,9 @@ public class Subscribe {
 //    @JoinColumn(name = "member_id")
 //    private Member member;
 
+    @Column(nullable = false)
+    private Long memberId;
+
     private String subName;
 
     @Enumerated(EnumType.STRING)
