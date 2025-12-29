@@ -14,8 +14,8 @@ public class SubscribeRepositoryImpl implements SubscribeRepository {
     private final SubscribeJpaRepository subscribeJpaRepository;
 
     @Override
-    public List<Subscribe> findAllByMemberId(Long memberId) {
-        return subscribeJpaRepository.findAllByMemberId(memberId);
+    public List<Subscribe> findAllByMember_Id(Long memberId) {
+        return subscribeJpaRepository.findAllByMember_Id(memberId);
     }
 
     @Override

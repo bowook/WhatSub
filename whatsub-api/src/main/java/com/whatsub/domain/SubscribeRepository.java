@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface SubscribeRepository {
-    List<Subscribe> findAllByMemberId(Long memberId);
+    List<Subscribe> findAllByMember_Id(Long memberId);
 
     Subscribe save(Subscribe subscribe);
 

@@ -140,7 +140,7 @@ class SubscribeServiceTest {
                 SubscribeEntityFixtures.디즈니()
         );
 
-        when(subscribeRepository.findAllByMemberId(memberId)).thenReturn(entityList);
+        when(subscribeRepository.findAllByMember_Id(memberId)).thenReturn(entityList);
 
         //when
         List<SubscribeList> result = subscribeService.subscribeList(memberId);
@@ -162,6 +162,6 @@ class SubscribeServiceTest {
                 () -> assertEquals(SubscribeCategory.OTT, second.subscribeCategory())
         );
 
-        verify(subscribeRepository).findAllByMemberId(memberId);
+        verify(subscribeRepository).findAllByMember_Id(memberId);
     }
 }

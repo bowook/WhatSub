@@ -1,7 +1,6 @@
 package com.whatsub.application;
 
 import com.whatsub.domain.SubscribeRepository;
-import com.whatsub.infrastructure.SubscribeJpaRepository;
 import com.whatsub.presentation.dto.CreateSubscribeRequest;
 import com.whatsub.domain.Subscribe;
 import com.whatsub.presentation.dto.SubscribeList;
@@ -63,7 +62,7 @@ public class SubscribeService {
     }
 
     public List<SubscribeList> subscribeList(Long memberId) {
-        return subscribeRepository.findAllByMemberId(memberId).stream()
+        return subscribeRepository.findAllByMember_Id(memberId).stream()
                 .map(sub -> new SubscribeList(
                         sub.getSubName(),
                         sub.getSubscribeCategory(),

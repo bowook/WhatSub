@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface SubscribeJpaRepository extends JpaRepository<Subscribe, Long> {
-    List<Subscribe> findAllByMemberId(Long memberId);
+    List<Subscribe> findAllByMember_Id(Long memberId);
 }
