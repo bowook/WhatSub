@@ -33,6 +33,18 @@ public class SubscribeFixtures {
         );
     }
 
+    public static CreateSubscribeRequest 수정_구독_요청_KRW() {
+        return new CreateSubscribeRequest(
+                "넷플릭스",
+                SubscribeCategory.OTT,
+                PriceType.KRW,
+                10000,
+                SubscribeCycle.MONTH,
+                LocalDate.now(),
+                false
+        );
+    }
+
     public static CreateSubscribeRequest 공유_구독_요청() {
         CreateSubscribeRequest req = 기본_구독_요청_KRW();
         return new CreateSubscribeRequest(

@@ -15,10 +15,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 
-import static org.mockito.Mockito.any;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class SubscribeServiceTest {
@@ -78,11 +76,59 @@ class SubscribeServiceTest {
 
 
     @Test
-    void updateSubscribe() {
+    void editSubscribe_updatesFields() {
+        //given
+        Long subscribeId = 1L;
+        Subscribe entity = SubscribeEntityFixtures.넷플릭스();
+        CreateSubscribeRequest dto = SubscribeFixtures.수정_구독_요청_KRW();
+
+        when(subscribeRepository.findById(subscribeId)).thenReturn(java.util.Optional.of(entity));
+
+        //when
+        Subscribe edited = subscribeService.editSubscribe(subscribeId, dto);
+
+        //then
+        assertSame(entity, edited);
+        assertAll(
+                () -> assertEquals(dto.subName(), edited.getSubName()),
+                () -> assertEquals(dto.subscribeCategory(), edited.getSubscribeCategory()),
+                () -> assertEquals(dto.priceType(), edited.getPriceType()),
+                () -> assertEquals(dto.price(), edited.getPrice()),
+                () -> assertEquals(dto.subscribeCycle(), edited.getSubscribeCycle()),
+                () -> assertEquals(dto.date().atStartOfDay(), edited.getDate()),
+                () -> assertEquals(dto.share(), edited.getNtoShare())
+        );
+
+        verify(subscribeRepository).findById(subscribeId);
+        verifyNoMoreInteractions(subscribeRepository);
     }
 
     @Test
-    void deleteSubscribe() {
+    void editSubscribe_throwsWhenSubscribeNotFound() {
+        // given
+        Long subscribeId = 1L;
+        CreateSubscribeRequest dto = SubscribeFixtures.수정_구독_요청_KRW();
+
+        when(subscribeRepository.findById(subscribeId))
+                .thenReturn(java.util.Optional.empty());
+
+        // when & then
+        assertThrows(IllegalArgumentException.class,
+                () -> subscribeService.editSubscribe(subscribeId, dto));
+
+        verify(subscribeRepository).findById(subscribeId);
+    }
+
+    @Test
+    void deleteSubscribe_deletesGivenEntity() {
+        // given
+        Subscribe subscribe = SubscribeEntityFixtures.넷플릭스();
+
+        // when
+        subscribeService.deleteSubscribe(subscribe);
+
+        // then
+        verify(subscribeRepository).delete(subscribe);
     }
 
     @Test
