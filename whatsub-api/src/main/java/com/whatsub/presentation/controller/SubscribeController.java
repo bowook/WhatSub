@@ -3,7 +3,6 @@ package com.whatsub.presentation.controller;
 import com.whatsub.application.SubscribeService;
 import com.whatsub.domain.Subscribe;
 import com.whatsub.presentation.dto.CreateSubscribeRequest;
-import com.whatsub.presentation.dto.EditSubscribeRequest;
 import com.whatsub.presentation.dto.SubscribeList;
 import com.whatsub.presentation.dto.SubscribeResponse;
 import lombok.RequiredArgsConstructor;
@@ -40,7 +39,7 @@ public class SubscribeController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping
     public ResponseEntity<List<SubscribeList>> subscribeList(@RequestParam Long memberId) {
         return ResponseEntity.ok(subscribeService.subscribeList(memberId));
     }
