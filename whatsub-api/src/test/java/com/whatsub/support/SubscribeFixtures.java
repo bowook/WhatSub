@@ -1,4 +1,4 @@
-package com.whatsub;
+package com.whatsub.support;
 
 import com.whatsub.domain.PriceType;
 import com.whatsub.domain.SubscribeCategory;

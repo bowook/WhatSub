@@ -1,10 +1,10 @@
-package com.whatsub;
+package com.whatsub.application;
 
+import com.whatsub.support.SubscribeEntityFixtures;
+import com.whatsub.support.SubscribeFixtures;
 import com.whatsub.domain.*;
 import com.whatsub.presentation.dto.CreateSubscribeRequest;
 import com.whatsub.domain.SubscribeRepository;
-import com.whatsub.application.CurrencyService;
-import com.whatsub.application.SubscribeService;
 import com.whatsub.presentation.dto.SubscribeList;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

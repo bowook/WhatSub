@@ -1,6 +1,5 @@
-package com.whatsub;
+package com.whatsub.application;
 
-import com.whatsub.application.CurrencyService;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.client.ExpectedCount;
