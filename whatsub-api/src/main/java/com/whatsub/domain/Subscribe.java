@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Getter
 public class Subscribe {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
 //    @ManyToOne
@@ -35,7 +35,7 @@ public class Subscribe {
 
     private LocalDateTime date;
 
-    private Boolean NtoShare;
+    private Boolean ntoShare;
 
     @Builder
     public Subscribe(
@@ -53,7 +53,7 @@ public class Subscribe {
         this.price = price;
         this.subscribeCycle = subscribeCycle;
         this.date = date;
-        NtoShare = ntoShare;
+        this.ntoShare = ntoShare;
     }
 
     public void edit(
@@ -71,6 +71,6 @@ public class Subscribe {
         this.price = price;
         this.subscribeCycle = subscribeCycle;
         this.date = date;
-        this.NtoShare = NtoShare;
+        this.ntoShare = NtoShare;
     }
 }
