@@ -96,7 +96,7 @@ class SubscribeServiceTest {
                 () -> assertEquals(dto.price(), edited.getPrice()),
                 () -> assertEquals(dto.subscribeCycle(), edited.getSubscribeCycle()),
                 () -> assertEquals(dto.date().atStartOfDay(), edited.getDate()),
-                () -> assertEquals(dto.share(), edited.getNtoShare())
+                () -> assertEquals(dto.share(), edited.getIsShare())
         );
 
         verify(subscribeRepository).findById(subscribeId);
