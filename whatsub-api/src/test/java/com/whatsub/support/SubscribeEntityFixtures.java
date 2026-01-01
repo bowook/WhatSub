@@ -14,7 +14,7 @@ public class SubscribeEntityFixtures {
                 .price(15000.0)
                 .subscribeCycle(SubscribeCycle.MONTH)
                 .date(LocalDate.now().atStartOfDay())
-                .ntoShare(false)
+                .isShare(false)
                 .build();
     }
 
@@ -25,7 +25,7 @@ public class SubscribeEntityFixtures {
                 .price(9900.0)
                 .subscribeCycle(SubscribeCycle.MONTH)
                 .date(LocalDate.now().atStartOfDay())
-                .ntoShare(true)
+                .isShare(true)
                 .build();
     }
 }
