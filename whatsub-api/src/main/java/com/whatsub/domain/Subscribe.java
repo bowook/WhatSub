@@ -1,0 +1,79 @@
+package com.whatsub.domain;
+
+import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
+
+@Entity
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class Subscribe {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+//    @ManyToOne
+//    @JoinColumn(name = "member_id")
+//    private Member member;
+
+    @Column(nullable = false)
+    private Long memberId;
+
+    private String subName;
+
+    @Enumerated(EnumType.STRING)
+    private SubscribeCategory subscribeCategory;
+
+    private double price;
+
+    @Enumerated(EnumType.STRING)
+    private PriceType priceType;
+
+    @Enumerated(EnumType.STRING)
+    private SubscribeCycle subscribeCycle;
+
+    private LocalDateTime date;
+
+    private Boolean isShare;
+
+    @Builder
+    public Subscribe(
+            String subName,
+            SubscribeCategory subscribeCategory,
+            PriceType priceType,
+            Double price,
+            SubscribeCycle subscribeCycle,
+            LocalDateTime date,
+            Boolean isShare
+    ) {
+        this.subName = subName;
+        this.subscribeCategory = subscribeCategory;
+        this.priceType = priceType;
+        this.price = price;
+        this.subscribeCycle = subscribeCycle;
+        this.date = date;
+        this.isShare = isShare;
+    }
+
+    public void edit(
+            String subName,
+            SubscribeCategory subscribeCategory,
+            PriceType priceType,
+            double price,
+            SubscribeCycle subscribeCycle,
+            LocalDateTime date,
+            boolean NtoShare
+    ) {
+        this.subName = subName;
+        this.subscribeCategory = subscribeCategory;
+        this.priceType = priceType;
+        this.price = price;
+        this.subscribeCycle = subscribeCycle;
+        this.date = date;
+        this.isShare = NtoShare;
+    }
+}
