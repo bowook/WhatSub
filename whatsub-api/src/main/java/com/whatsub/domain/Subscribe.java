@@ -38,7 +38,7 @@ public class Subscribe {
 
     private LocalDateTime date;
 
-    private Boolean ntoShare;
+    private Boolean isShare;
 
     @Builder
     public Subscribe(
@@ -48,7 +48,7 @@ public class Subscribe {
             Double price,
             SubscribeCycle subscribeCycle,
             LocalDateTime date,
-            Boolean ntoShare
+            Boolean isShare
     ) {
         this.subName = subName;
         this.subscribeCategory = subscribeCategory;
@@ -56,7 +56,7 @@ public class Subscribe {
         this.price = price;
         this.subscribeCycle = subscribeCycle;
         this.date = date;
-        this.ntoShare = ntoShare;
+        this.isShare = isShare;
     }
 
     public void edit(
@@ -74,6 +74,6 @@ public class Subscribe {
         this.price = price;
         this.subscribeCycle = subscribeCycle;
         this.date = date;
-        this.ntoShare = NtoShare;
+        this.isShare = NtoShare;
     }
 }

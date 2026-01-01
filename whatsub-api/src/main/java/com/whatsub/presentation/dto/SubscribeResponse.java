@@ -26,7 +26,7 @@ public record SubscribeResponse(
                 subscribe.getPrice(),
                 subscribe.getSubscribeCycle(),
                 subscribe.getDate().toLocalDate(),
-                subscribe.getNtoShare()
+                subscribe.getIsShare()
         );
     }
 }
